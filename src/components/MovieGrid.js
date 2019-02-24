@@ -3,8 +3,6 @@ import {withStyles} from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import IconButton from '@material-ui/core/IconButton';
-import image from '../logo.svg'
 import MovieService from "../services/MovieService";
 import {Link} from "react-router-dom";
 
@@ -25,17 +23,6 @@ const styles = theme => ({
         color: 'rgba(255, 255, 255, 0.54)',
     },
 });
-const tileData = [
-    {
-        img: image,
-        title: 'Image',
-        author: 'author',
-    },
-];
-
-
-
-
 
 class MovieGrid extends Component{
 
@@ -54,8 +41,6 @@ class MovieGrid extends Component{
             this.setState({movie_list:result.results})
         }.bind(this));
 
-        //
-
     }
 
 
@@ -67,7 +52,7 @@ class MovieGrid extends Component{
 
                     <GridListTile key={tile.poster_path}>
                         <img src={'http://image.tmdb.org/t/p/w185/'+tile.poster_path} alt={tile.title}/>
-                        <Link to="/details">
+                        <Link to={"/details/"+tile.id}>
                         <GridListTileBar
                             title={tile.title}
                             subtitle={<span>Score: {tile.vote_average}</span>}

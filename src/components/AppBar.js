@@ -22,8 +22,6 @@ function SimpleAppBar() {
                         Movie App
                     </Typography>
                         </Link>
-                    <Link to="/details">Topics</Link>
-
                 </Toolbar>
             </AppBar>
         </div>

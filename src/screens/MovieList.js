@@ -9,9 +9,8 @@ class App extends Component {
 
     render() {
         return (
-            <div className="aaa">
+            <div>
                 <MovieGrid/>
-
             </div>
         );
     }
