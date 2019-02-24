@@ -1,17 +1,23 @@
-import React, { Component } from 'react';
-import logo from '../logo.svg';
+import React, {Component} from 'react';
 import '../assets/styles/App.css';
 import AppBar from '../components/AppBar'
-import MovieGrid from '../components/MovieGrid'
+import MovieList from '../screens/MovieList'
+import MovieDetails from '../screens/MovieDetails'
+import {BrowserRouter as Router, Route} from "react-router-dom";
+
 
 class App extends Component {
     render() {
         return (
-            <div className="App">
-                <AppBar/>
-                <MovieGrid/>
+            <Router>
+                <div>
+                    <AppBar/>
 
-            </div>
+
+                    <Route exact path="/" component={MovieList}/>
+                    <Route path="/details" component={MovieDetails}/>
+                </div>
+            </Router>
         );
     }
 }

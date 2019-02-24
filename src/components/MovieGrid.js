@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import image from '../logo.svg'
+import MovieService from "../services/MovieService";
+import {Link} from "react-router-dom";
+
 
 const styles = theme => ({
     root: {
@@ -22,39 +25,60 @@ const styles = theme => ({
         color: 'rgba(255, 255, 255, 0.54)',
     },
 });
+const tileData = [
+    {
+        img: image,
+        title: 'Image',
+        author: 'author',
+    },
+];
 
 
 
 
-function TitlebarGridList() {
-    const tileData = [
-        {
-            img: image,
-            title: 'Image',
-            author: 'author',
-        },
-    ];
 
+class MovieGrid extends Component{
+
+    constructor(props){
+        super(props);
+        this.state= {
+            movie_list: []
+        };
+
+    }
+
+    componentWillMount() {
+        this.movieService = new MovieService();
+        this.movieService.allMovies().then( function(result) {
+            console.log(result);
+            this.setState({movie_list:result.results})
+        }.bind(this));
+
+        //
+
+    }
+
+
+    render() {
     return (
         <div>
-            <GridList cellHeight={200} cols={3}>
-                {tileData.map(tile => (
-                    <GridListTile key={tile.img}>
-                        <img src={tile.img} alt={tile.title}/>
+            <GridList cellHeight={300} cols={10} >
+                {this.state.movie_list.map(tile => (
+
+                    <GridListTile key={tile.poster_path}>
+                        <img src={'http://image.tmdb.org/t/p/w185/'+tile.poster_path} alt={tile.title}/>
+                        <Link to="/details">
                         <GridListTileBar
                             title={tile.title}
-                            subtitle={<span>by: {tile.author}</span>}
-                            actionIcon={
-                                <IconButton>
-
-                                </IconButton>
-                            }
+                            subtitle={<span>Score: {tile.vote_average}</span>}
                         />
+                        </Link>
                     </GridListTile>
                 ))}
             </GridList>
         </div>
     );
+            }
 }
 
-export default withStyles(styles)(TitlebarGridList);
+export default withStyles(styles)(MovieGrid);
