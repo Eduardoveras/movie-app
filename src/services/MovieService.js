@@ -10,20 +10,16 @@ class MovieService {
     // Getter
 
 
-    async allMovies()   {
+    async allMovies(page_number)   {
         let all_movies;
-        await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&language=en-US&page=1`)
+        await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&language=en-US&page=${page_number}`)
             .then(function (response) {
                 // handle success
-                //console.log(response);
                 all_movies=response.data
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
-            })
-            .then(function () {
-                // always executed
             });
 
 
@@ -35,17 +31,12 @@ class MovieService {
         await axios.get(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${this.API_KEY}&language=en-US` )
             .then(function (response) {
                 // handle success
-                //console.log(response);
                 movie=response.data
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
-            })
-            .then(function () {
-                // always executed
             });
-
 
         return movie
     }

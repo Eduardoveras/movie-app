@@ -20,12 +20,14 @@ body, html {
   -webkit-filter: blur(8px);
 
   /* Full height */
-  height: 94vh;
+  height: 96vh;
 
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: -10px;
+
 }
 
 /* Position text in the middle of the page/image */
@@ -50,4 +52,12 @@ body, html {
   text-align: left;
   font-size: 1em;
   font-weight: normal;
+}
+
+.movie-grid{
+  text-align: center;
+}
+
+.movie-grid > button{
+  margin: 25px 12px;
 }

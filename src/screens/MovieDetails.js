@@ -27,7 +27,7 @@ class App extends Component {
     render() {
         let movie=this.state.movie_details;
         return (
-            <div>
+            <div style={{overflow: 'hidden'}}>
                 {this.state.movie_details?<div>
                     <div className="bg-image" style={{
 
